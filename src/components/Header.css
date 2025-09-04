@@ -1,0 +1,165 @@
+/* ===== Header Container ===== */
+.header {
+    position: fixed;   
+    top: 0;           
+    left: 0;           
+    width: 100%;     
+    z-index: 1000;     
+    margin: 0;         
+    margin-bottom: 2rem;
+    background-color: #fff; /* optional: add background to prevent transparency */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* optional: subtle shadow */
+    height: 100px;     /* match your header height */
+}
+
+.header .container {
+  max-width: 100%;   
+  margin: 0;      
+ 
+  display: grid;
+  grid-template-columns: 1.2fr 3.8fr;
+  align-items: stretch;
+  height: 100px;
+  width: 100%;
+}
+
+
+
+/* ===== Logo Block ===== */
+.logo {
+  display: flex;
+  align-items: center;     
+  height: 100%;          
+}
+
+.logo img {
+  height: 100px;          /* adjust to match title height */
+  width: auto;
+}
+
+
+@media (max-width: 768px) {
+  .logo img {
+    max-height: 100%;      /* slightly smaller for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    max-height: 40px;      /* smaller on mobile */
+  }
+}
+
+
+/* ===== Brand Title ===== */
+.brand-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* center text vertically in its container */
+  text-align: center;
+  color: #3366ff;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+
+
+.brand-title .line {
+  white-space: nowrap;
+  font-family: "Bodoni MT Black", serif;
+   word-spacing: 3px;
+   font-family: 700;
+}
+
+.brand-title .hub {
+  color: #C00000;
+  font-weight: 700;
+  font-family: Elephant, serif;
+}
+
+.brand-title .logo_small_text {  
+  font-size: 0.75rem;   /* small size */
+  font-weight: 400;     /* normal, not bold */
+  font-family: Elephant, serif;
+  line-height: 1.2;
+  letter-spacing: 0.5px; /* optional */
+}
+
+
+/* ===== Right Side (Nav + Toggle) ===== */
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  height: 100%;
+  background: #3366ff;  
+  color: #ffffff;
+}
+
+/* ===== Navigation ===== */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: #ffffff; /* ensure contrast on blue bg */
+  font-size: 1.125rem; /* increased from 1rem to 1.125rem (18px) */
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.75rem 1.25rem; /* slightly bigger padding */
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+
+.nav button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* ===== Menu Toggle (Mobile) ===== */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff; /* white bars on blue bg */
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    background: #3366ff; /* keep blue for mobile dropdown */
+    position: absolute;
+    top: 80px; /* align below header */
+    right: 20px;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border-radius: 8px;
+  }
+
+  .nav.nav-open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
