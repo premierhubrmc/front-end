@@ -20,18 +20,8 @@ body {
   padding: 0 10px;
 }
 
-/* Header Styles */
 
 
-/* Hero Styles */
-
-
-
-
-/* hover effect */
-
-
-/**/
 /* Button Styles */
 .btn {
   padding: 0.875rem 2rem;
@@ -97,6 +87,7 @@ section {
 }
 
 .section-header {
+
   /* Section header styles */
 .section-header {
   display: flex;                /* enables two-column layout */
@@ -147,165 +138,7 @@ section {
   max-width: 600px;
   margin: 0 auto;
 }
-/* About Styles */
-.about {
-  background: #f8fafc;
-  padding: 1px 0;
-}
-.our_skills {
-  margin: 0;                /* removes all margin */
-  padding: 0;               /* removes all padding */
-  text-align: center;
-  background-size: cover;   /* fill the div */
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;            /* center content inside */
-  align-items: center;      /* vertical center */
-  justify-content: center;  /* horizontal center */
-  border-radius: 12px;
-}
 
-
-.skills-image {
-  max-width: 400px;       /* keeps it from being too big */
-  width: 100%;            /* makes it responsive */
-  height: auto;           /* keeps aspect ratio */
-  border-radius: 10px;    /* smooth rounded corners */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* soft shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skills-image:hover {
-  transform: scale(1.05); /* subtle zoom on hover */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-
-
-/* Section Header */
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-header h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 1rem;
-}
-
-/* Two-column intro (paragraph + bullet list) */
-.section-intro {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns */
-  gap: 2rem;
-  align-items: start;
-  margin-top: 1.5rem;
-  text-align: left; /* ensures left alignment inside */
-}
-
-.section-intro p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #334155;
-}
-
-.section-intro ul {
-  list-style: disc;
-  padding-left: 1.5rem;
-  color: #475569;
-}
-
-.section-intro li {
-  margin-bottom: 0.5rem;
-}
-
-/* Responsive stacking */
-@media (max-width: 768px) {
-  .section-intro {
-    grid-template-columns: 1fr; /* stack vertically */
-  }
-}
-
-/* About Content */
-.about-container {
-  display: flex;
-  align-items: center;        
-  justify-content: space-between; 
-  gap: 20px;                  
-  flex-wrap: wrap;           
-}
-
-.about-container h2 {
-  margin: 0;            /* removes extra spacing */
-  background-color: #007bff; /* bootstrap blue */
-    color: #fff !important; 
-  padding: 8px 16px;    /* add some breathing space */
-  text-align: left;    /* align text inside h2 to the right */
-  border-radius: 4px;   /* optional: rounded edges */
-  width: 75%;
-}
-
-
-.about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  
-  align-items: center;
-}
-
-.about-text h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 1rem;
-}
-
-.about-text p {
-  color: #64748b;
-  margin-bottom: 2rem;
-  line-height: 1.7;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat h4 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #3b82f6;
-  margin-bottom: 0.5rem;
-}
-
-.stat p {
-  color: #64748b;
-  font-size: 0.875rem;
-  margin: 0;
-}
-
-.about-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.icon-img {
-  width: 300px;   /* adjust as needed */
-  height: auto;  /* keeps proportions */
-  display: inline-block;
-  
-  vertical-align: middle;
-}
 
 
 /* Training Styles */
@@ -400,19 +233,11 @@ section {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
-.about-card{
-  height: fit-content;
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
+
 .strategy-heading {
-  font-weight: 600; /* same as Tailwind's font-semibold */
-  color: #1a1a1a;   /* dark gray */
-  display: block;   /* makes it act like a heading above desc */
+  font-weight: 600; 
+  color: #1a1a1a;  
+  display: block;  
   margin-bottom: 0.25rem;
 }
 
@@ -422,19 +247,13 @@ section {
   margin-left: 1rem; /* indent slightly under heading */
   list-style: none;
 }
-.about-content-tittle{
-background-color: #3366FF;
-color: #fff;
-}
+
 .service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
-.service-icon {
-  font-size: 5rem;   /* ~80px */
-  margin-bottom: 1rem;
-}
+
 
 
 

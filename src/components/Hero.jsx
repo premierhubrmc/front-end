@@ -51,7 +51,7 @@ const Hero = () => {
           <p>"Management Partner"</p>
         </div>
 
-        <p>
+        <p className="hero-desc">
           Premier Hub for Risk Management & Compliance - PhRMC is driving and
           coordinating the implementation of effective Risk Management in all
           organizations.

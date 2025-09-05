@@ -6,7 +6,8 @@ import Training from './components/Training'
 import Corporate from './components/Corporate'
 import Events from './components/Events'
 import Footer from './components/Footer'
-import About_content from './components/About_contents'
+import AboutFooter from './components/AboutFooter'
+
 
 
 
@@ -15,8 +16,8 @@ function App() {
     <div className="App">
       <Header />
       <Hero />
-      <About />
-      <About_content/>      
+      <About />   
+      <AboutFooter/>     
       <Training />
       <Corporate />
       <Events />

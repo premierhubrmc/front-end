@@ -1,0 +1,227 @@
+
+
+.upcoming-p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  padding: 2rem 0; 
+  text-align: center;         
+  font-weight: 600;
+  color: rgb(223, 54, 33);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.1;          
+}
+
+.hero-subtitle{
+  padding-bottom: 4rem;
+} 
+.hero-subtitle p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;                  
+  font-weight: 600;
+  color: rgb(223, 54, 33);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.1;          
+}
+
+
+
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+  padding: 0;
+  margin: 0;
+}
+.hero-desc{
+  font-size: 1.5rem;
+}
+.phone-img {
+  display: flex;
+  justify-content: center;       
+  align-items: center;           
+}
+
+.phone-img img {
+  width: 100%;                   
+  max-width: 400px;              
+  height: auto;                  
+  object-fit: contain;           
+  
+}
+.hero-events {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  align-items: center;   
+  margin: 0;  
+  padding: 0;
+  width: 100%;
+}
+.hero {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.6;
+    
+    box-sizing: border-box;
+    margin: 0;
+    padding: 100px 2rem 4rem; /* top padding = header height */
+    display: flex;
+    align-items: center;       /* center vertically */
+    justify-content: space-between;
+    min-height: calc(80vh - 100px); /* reduce min-height by header height */
+    gap: 4rem;
+}
+
+
+
+
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* 👇 Two-column layout for events */
+.hero-events {
+  flex: 1;
+  display: flex;
+  align-items: flex-start; /* keep top alignment */
+  gap: 0;
+  height: auto;            /* allow parent to grow with image */
+  overflow: visible;       /* ensure image isn't clipped */
+}
+
+.hero-image {
+  flex: 1;
+  
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.hero-list {
+  flex: 2;
+}
+
+.hero-list .section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+
+
+.upcoming-list {
+  list-style: none;
+  padding-left: 0;
+  color: #334155; /* default text color */
+}
+.upcoming-item:hover {
+  filter: brightness(90%);
+  transform: translateX(5px);
+}
+
+.upcoming-img {
+  position: relative; /* or absolute if you need overlay */
+  width: 100%;
+  height: auto;
+  max-height: 450px; /* optional: keeps it controlled */
+  object-fit: cover; /* makes it resize nicely */
+  border-radius: 8px; /* if you want rounded edges */
+}
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;         /* 🚀 prevents shrinking */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff; /* white circle */
+  box-shadow: inset -4px 0px 8px rgba(0, 0, 0, 0.25);
+}
+
+.icon-wrapper svg {
+  width: 16px;
+  height: 16px;
+  color: #000; /* makes icons visible inside white */
+}
+
+.upcoming-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes icon to far right */
+  color: #fff;
+  font-family: "Bodoni MT Black", serif;
+  margin: 0;
+  padding: 0 0.5rem;
+  height: 60px;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.about-description{
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  padding-bottom: 1.3rem;
+}
+.about-list li{
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+}
+
+/*******/
+
+.about-right-text {
+  max-width: 100%;
+}
+
+.about-right-text .line {
+  display: block;             /* make it a block element */
+  white-space: normal;        /* allow wrapping for responsiveness */
+  font-family: "Bodoni MT Black", serif;
+  font-weight: 700;           /* fixed: was mistakenly written as font-family: 700 */
+  color: #3366ff;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  line-height: 1.4;
+  word-break: break-word;     /* ensures long text doesn’t overflow */
+}
+
+.about-right-text .hub {
+  color: #C00000;
+  font-weight: 700;
+  font-family: Elephant, serif;
+}
+
+
+@media (max-width: 768px) {
+  .hero-events {
+    grid-template-columns: 1fr;  /* stack on small screens */
+    text-align: center;          /* center text when stacked */
+  }
+
+  .phone-img img {
+    max-width: 80%;              /* smaller on mobile */
+    margin: 0 auto;              /* center it */
+  }
+}
