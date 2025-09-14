@@ -1,0 +1,304 @@
+/* ================================
+   Admin Dashboard Base Layout
+================================ */
+.admin-dashboard {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 50%, #f3e8ff 100%);
+}
+
+/* ================================
+   Sidebar
+================================ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 288px;
+  background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 50%, #3730a3 100%);
+  color: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 50;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #60a5fa, #a855f7);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #bfdbfe;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: color 0.2s;
+  display: none;
+}
+
+.close-btn:hover {
+  color: white;
+}
+
+/* Sidebar Overlay (Mobile only) */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  display: none;
+}
+
+/* ================================
+   Sidebar Menu
+================================ */
+.menu {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: #bfdbfe;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background: rgba(59, 130, 246, 0.5);
+  color: white;
+}
+
+.menu-item.active {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+  transform: scale(1.05);
+}
+
+/* ================================
+   User Info
+================================ */
+.user-info {
+  padding: 1rem;
+  border-top: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.user-name {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.user-role {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #bfdbfe;
+}
+
+/* ================================
+   Header
+================================ */
+.main-header {
+  grid-column: 1 / -1;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #dbeafe;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.mobile-menu-btn {
+  background: #dbeafe;
+  border: none;
+  color: #2563eb;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: none;
+}
+
+.mobile-menu-btn:hover {
+  background: #bfdbfe;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.header-title p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* ================================
+   Main Content
+================================ */
+.main-content {
+  flex: 1;
+  min-height: 100vh;
+  margin-left: 0;
+  padding: 1.5rem;
+  background: #f9fafb;
+  overflow-y: auto;
+}
+
+.content-area {
+  padding: 1.5rem;
+}
+
+/* ================================
+   Responsive Breakpoints
+================================ */
+@media (min-width: 1024px) {
+  .sidebar {
+    position: static;
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 288px;
+  }
+  .close-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .admin-dashboard {
+    grid-template-columns: 1fr; /* collapse grid */
+  }
+  .sidebar-overlay {
+    display: block;
+  }
+  .close-btn {
+    display: block;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    padding: 1rem;
+  }
+  .header-title h1 {
+    font-size: 1.25rem;
+  }
+  .welcome-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100vw;
+  }
+}

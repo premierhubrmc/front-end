@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./Hero.css";
 import { Banknote, Cpu, Users, ShieldCheck, Briefcase } from "lucide-react";
 
-// Icons remain unchanged
 const iconMap = {
   financial: Banknote,
   ai: Cpu,
   hr: Users,
   risk: ShieldCheck,
-  enterprise: Briefcase,
+  retirement: Briefcase,
 };
 
 // Brand colors
@@ -16,22 +16,15 @@ const colors = ["#DF3621", "#FD9E01", "#00B09B", "#FF33CC", "#0099FF"];
 
 const Hero = () => {
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch("http://localhost:8001/api/events"); 
-        // ⬆️ replace with your actual backend URL e.g. https://api.seleneecs.com/api/events
-        if (!res.ok) throw new Error("Failed to fetch events");
-
-        const data = await res.json();
-        setEvents(data);
+        const res = await axios.get("http://localhost:8001/api/upcoming-events"); 
+        // Expected backend shape: [{ id, label/title, pdf_url, category }]
+        setEvents(res.data);
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.error("Error fetching upcoming events:", err);
       }
     };
 
@@ -54,7 +47,7 @@ const Hero = () => {
         </p>
       </div>
 
-      {/* Right: upcoming events */}
+      {/* Right: upcoming events image + list */}
       <div className="hero-events">
         <div className="phone-img">
           <img
@@ -65,22 +58,17 @@ const Hero = () => {
         </div>
 
         <div className="hero-content">
-          <p className="upcoming-p">"Upcoming Trainings"</p>
-
-          {loading && <p>Loading events...</p>}
-          {error && <p style={{ color: "red" }}>{error}</p>}
-
-          {!loading && !error && (
-            <ul className="upcoming-list">
-              {events.map((ev, index) => {
-                const Icon = iconMap[ev.icon_key]; // <-- use DB-provided icon_key
+          <p className="upcoming-p">Upcoming Trainings</p>
+          <ul className="upcoming-list">
+            {events.length > 0 ? (
+              events.map((ev, index) => {
+                // Try to match icon based on event.category OR fallback
+                const Icon = iconMap[ev.category?.toLowerCase()] || Briefcase;
                 return (
                   <li
-                    key={ev.id} // <-- use DB id
+                    key={ev.id}
                     className="upcoming-item"
-                    style={{
-                      backgroundColor: colors[index % colors.length],
-                    }}
+                    style={{ backgroundColor: colors[index % colors.length] }}
                     role="button"
                     tabIndex={0}
                     onClick={() => window.open(ev.pdf_url, "_blank")}
@@ -90,7 +78,7 @@ const Hero = () => {
                       }
                     }}
                   >
-                    <span>{ev.title}</span>
+                    <span>{ev.title || ev.label}</span>
                     {Icon && (
                       <span className="icon-wrapper">
                         <Icon className="w-5 h-5 text-black" />
@@ -98,9 +86,11 @@ const Hero = () => {
                     )}
                   </li>
                 );
-              })}
-            </ul>
-          )}
+              })
+            ) : (
+              <p>No upcoming trainings available right now.</p>
+            )}
+          </ul>
 
           <button
             className="btn btn-primary"

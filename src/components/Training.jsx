@@ -1,78 +1,80 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Training = () => {
-  const programs = [
-    {
-      id: 1,
-      title: "Financial Leadership and Governance Excellence",
-      description: "Master financial strategy, governance frameworks, and leadership principles for sustainable organizational growth.",
-      
-     
-      image: "/images/finance.jpg"
-    },
-    {
-      id: 2,
-      title: "AI Predictive Analysis and Data-Driven Decision Making",
-      description: "Harness the power of artificial intelligence and data analytics to make informed strategic decisions.",
-      
-      
-      image: "/images/ai.jpg"
-    },
-    {
-      id: 3,
-      title: "Human Resource Administrative Management and Performance Management",
-      description: "Develop comprehensive HR strategies, administrative excellence, and performance optimization systems.",
-     
-      
-      image: "/images/hr.jpg"
-    },
-    {
-      id: 4,
-      title: "Strategic Enterprise Risk Management and Compliance",
-      description: "Build robust risk management frameworks and ensure regulatory compliance across your organization.",
-      
-      
-      image: "/images/risk.jpg"
-    },
-    {
-      id: 5,
-      title: "Retirement Planning and Self Empowerment",
-      description: "Create comprehensive retirement strategies and develop personal empowerment skills for long-term success.",
-     
-      
-      image: "/images/retirement.jpg"
-    }
-    
+  const [programs, setPrograms] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  ]
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const res = await axios.get("http://localhost:8001/api/trainings");
+        setPrograms(res.data);
+      } catch (err) {
+        console.error("FETCH TRAININGS ERROR:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
+
+  const handleClick = (e, pdfUrl) => {
+    e.preventDefault();
+    if (pdfUrl) {
+      window.open(pdfUrl, "_blank"); // open PDF in new tab
+    } else {
+      alert("PDF not available for this program.");
+    }
+  };
+
+  if (loading) {
+    return <p className="text-center">Loading trainings...</p>;
+  }
 
   return (
     <section id="training" className="training">
       <div className="container">
         <div className="section-header">
           <h2>Training Programs</h2>
-          <p>At Premier Hub you will access world class training that equips and skills you to run:</p>
+          <p>
+            At Premier Hub you will access world class training that equips and
+            skills you to run:
+          </p>
         </div>
-        
-        <div className="programs-grid">
-          {programs.map(program => (
-            <div key={program.id} className="program-card">
-              <div className="program-image">
-                <img src={program.image} alt={program.title} />
-               
-              </div>
-              <div className="program-content">
-                <h3>{program.title}</h3>
-                <p>{program.description}</p>
 
-                <button className="btn btn-outline">Learn More</button>
+        <div className="programs-grid">
+          {programs.length === 0 ? (
+            <p className="text-center">No training programs available yet.</p>
+          ) : (
+            programs.map((program) => (
+              <div key={program.id} className="program-card">
+                <div className="program-image">
+                  <img
+                    src={program.image_url}
+                    alt={program.title}
+                    onError={(e) => (e.target.src = "/images/placeholder.jpg")} // fallback
+                  />
+                </div>
+                <div className="program-content">
+                  <h3>{program.title}</h3>
+                  <p>{program.description}</p>
+
+                  <button
+                    className="btn btn-outline"
+                    onClick={(e) => handleClick(e, program.pdf_url)}
+                  >
+                    Learn More
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Training
+export default Training;

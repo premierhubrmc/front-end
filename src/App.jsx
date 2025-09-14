@@ -1,29 +1,39 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import About from './components/About'
-import Training from './components/Training'
-import Corporate from './components/Corporate'
-import Events from './components/Events'
-import Footer from './components/Footer'
-import AboutFooter from './components/AboutFooter'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import About from './components/About';
+import Training from './components/Training';
+import Corporate from './components/Corporate';
+import Events from './components/Events';
+import Footer from './components/Footer';
+import AboutFooter from './components/AboutFooter';
+import AdminPage from './components/AdminPage'; // new admin dashboard
 
-
-
+function Home() {
+  return (
+    <>
+      <Header />
+      <Hero />
+      <About />
+      <AboutFooter />
+      <Training />
+      <Corporate />
+      <Events />     
+      <Footer />
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Hero />
-      <About />   
-      <AboutFooter/>     
-      <Training />
-      <Corporate />
-      <Events />
-      <Footer />
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

@@ -96,6 +96,107 @@ const Events = () => {
         </div>
         
         <div className="events-cta">
+          <h3>PhRMC</h3>
+          <p>Contact us for more informations</p>
+          <div className="newsletter-signup">
+            <input type="email" placeholder="Enter your email address" />
+            <button className="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Events
+
+
+/*
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./forms.css"; // assuming you want consistent styles
+
+const Events = () => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch events from backend
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axios.get("http://localhost:8001/api/events"); 
+        setEvents(res.data); // make sure backend returns an array
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  const getStatusClass = (status) => {
+    switch (status) {
+      case "Registration Open": return "status-open";
+      case "Early Bird": return "status-early";
+      case "Coming Soon": return "status-soon";
+      default: return "status-default";
+    }
+  };
+
+  if (loading) {
+    return (
+      <section className="events">
+        <div className="container">
+          <p>Loading events...</p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="events" className="events">
+      <div className="container">
+        <div className="section-header">
+          <h2>Upcoming Events</h2>
+          <p>Join our upcoming training programs and professional development events</p>
+        </div>
+
+        <div className="events-grid">
+          {events.length > 0 ? (
+            events.map((event) => (
+              <div key={event.id} className="event-card">
+                <div className="event-header">
+                  <div className={`event-status ${getStatusClass(event.status)}`}>
+                    {event.status}
+                  </div>
+                  <div className="event-type">{event.type}</div>
+                </div>
+
+                <div className="event-content">
+                  <h3>{event.title}</h3>
+                  <div className="event-details">
+                    <div className="event-detail">
+                      <span className="detail-icon">📅</span>
+                      <span>{event.date}</span>
+                    </div>
+                    <div className="event-detail">
+                      <span className="detail-icon">📍</span>
+                      <span>{event.location}</span>
+                    </div>
+                  </div>
+                  <p className="event-program">Part of: {event.program}</p>
+                  <button className="btn btn-primary">Register Now</button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No events available right now. Please check back later!</p>
+          )}
+        </div>
+
+        <div className="events-cta">
           <h3>Don't Miss Out!</h3>
           <p>Subscribe to our newsletter to stay updated on upcoming events and training programs.</p>
           <div className="newsletter-signup">
@@ -105,7 +206,9 @@ const Events = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Events
+export default Events;
+
+*/

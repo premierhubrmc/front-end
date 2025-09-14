@@ -125,20 +125,24 @@
 .menu-toggle {
   display: none;
   flex-direction: column;
+  align-items: flex-end; /* ✅ push spans to the far right inside button */
   background: none;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  margin-left: auto; /* ✅ push whole button to the right of header */
 }
 
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background-color: #ffffff; /* white bars on blue bg */
+  background-color: #ffffff; /* white bars */
   margin: 3px 0;
   border-radius: 2px;
   transition: 0.3s;
 }
+
+
 
 /* ===== Responsive Styles ===== */
 @media (max-width: 768px) {
@@ -148,18 +152,25 @@
     gap: 1rem;
     background: #3366ff; /* keep blue for mobile dropdown */
     position: absolute;
-    top: 80px; /* align below header */
-    right: 20px;
+    top: 75px; /* align below header */
+    right: 10px;
     padding: 1rem 2rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    border-radius: 8px;
+    border-radius: none;
   }
 
   .nav.nav-open {
     display: flex;
+    margin-top: 25px;
+    
   }
 
   .menu-toggle {
     display: flex;
   }
+.header-right {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;       }
+
 }
