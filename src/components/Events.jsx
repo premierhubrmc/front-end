@@ -32,7 +32,10 @@ const Events = () => {
       try {
         const res = await fetch("http://localhost:8001/api/events");
         const data = await res.json();
-        setEvents(Array.isArray(data) ? data : []);
+
+        if (Array.isArray(data)) {
+          setEvents(data);
+        }
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {
@@ -41,6 +44,11 @@ const Events = () => {
     };
     fetchEvents();
   }, []);
+
+  // ✅ Event listener for register button
+  const handleRegisterClick = (id, title) => {
+    console.log(`Register clicked → ID: ${id}, Title: ${title}`);
+  };
 
   if (loading) {
     return <p style={{ textAlign: "center" }}>Loading events...</p>;
@@ -85,7 +93,12 @@ const Events = () => {
                   {event.program && (
                     <p className="event-program">Part of: {event.program}</p>
                   )}
-                  <button className="btn btn-primary">Register Now</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleRegisterClick(event.id, event.title)}
+                  >
+                    Register Now
+                  </button>
                 </div>
               </div>
             ))
