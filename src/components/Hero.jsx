@@ -22,12 +22,18 @@ const Hero = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch("http://localhost:8001/api/events"); 
-        // ⬆️ replace with your actual backend URL e.g. https://api.seleneecs.com/api/events
+        const res = await fetch("http://localhost:8001/api/events");
+        // ⬆️ replace with your actual backend URL e.g. https://api.premierhub.com/api/events
         if (!res.ok) throw new Error("Failed to fetch events");
 
         const data = await res.json();
-        setEvents(data);
+
+        // ✅ Only keep featured events
+        const featuredEvents = Array.isArray(data)
+          ? data.filter((ev) => ev.is_featured)
+          : [];
+
+        setEvents(featuredEvents);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -65,18 +71,18 @@ const Hero = () => {
         </div>
 
         <div className="hero-content">
-          <p className="upcoming-p">"Upcoming Trainings"</p>
+          {!error && <p className="upcoming-p">"Upcoming Trainings"</p>}
 
           {loading && <p>Loading events...</p>}
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <p style={{ color: "red" }}>{"No Upcoming Events yet"}</p>}
 
-          {!loading && !error && (
+          {!loading && !error && events.length > 0 && (
             <ul className="upcoming-list">
               {events.map((ev, index) => {
                 const Icon = iconMap[ev.icon_key]; // <-- use DB-provided icon_key
                 return (
                   <li
-                    key={ev.id} // <-- use DB id
+                    key={ev.id}
                     className="upcoming-item"
                     style={{
                       backgroundColor: colors[index % colors.length],
@@ -102,16 +108,22 @@ const Hero = () => {
             </ul>
           )}
 
-          <button
-            className="btn btn-primary"
-            onClick={() =>
-              document.getElementById("training")?.scrollIntoView({
-                behavior: "smooth",
-              })
-            }
-          >
-            Explore Programs
-          </button>
+          {!loading && !error && events.length === 0 && (
+            <p style={{ textAlign: "center" }}>No featured events available.</p>
+          )}
+
+          {!error && (
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                document.getElementById("training")?.scrollIntoView({
+                  behavior: "smooth",
+                })
+              }
+            >
+              Explore Programs
+            </button>
+          )}
         </div>
       </div>
     </section>
