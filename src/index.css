@@ -389,10 +389,7 @@ section {
     justify-content: center;
   }
 
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+ 
 
   .stats {
     grid-template-columns: 1fr;

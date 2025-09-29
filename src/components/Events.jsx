@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import UserRegistrationForm from "./userRegistrationForm.jsx";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  // ✅ Helper to format DB date
+  // ✅ Format date
   const formatDate = (dateString) => {
     if (!dateString) return "Date TBA";
     return new Date(dateString).toLocaleDateString("en-GB", {
@@ -30,9 +33,9 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch("http://localhost:8001/api/events");
+        const res = await fetch(`${API_URL}/api/events`);
         const data = await res.json();
-
+      
         if (Array.isArray(data)) {
           setEvents(data);
         }
@@ -44,11 +47,6 @@ const Events = () => {
     };
     fetchEvents();
   }, []);
-
-  // ✅ Event listener for register button
-  const handleRegisterClick = (id, title) => {
-    console.log(`Register clicked → ID: ${id}, Title: ${title}`);
-  };
 
   if (loading) {
     return <p style={{ textAlign: "center" }}>Loading events...</p>;
@@ -65,49 +63,49 @@ const Events = () => {
           </p>
         </div>
 
-        <div className="events-grid">
-          {events.length > 0 ? (
-            events.map((event) => (
-              <div key={event.id} className="event-card">
-                <div className="event-header">
-                  <div
-                    className={`event-status ${getStatusClass(event.status)}`}
-                  >
-                    {event.status}
-                  </div>
-                  <div className="event-type">{event.type}</div>
-                </div>
+          <div className="events-grid">
+            {events.length > 0 ? (
+              events.map((event, index) => {
+                // Use event.id if available, otherwise fallback to index + title
+                const uniqueKey = event.id ? `event-${event.id}` : `event-${index}-${event.title}`;
 
-                <div className="event-content">
-                  <h3>{event.title}</h3>
-                  <div className="event-details">
-                    <div className="event-detail">
-                      <span className="detail-icon">📅</span>
-                      <span>{formatDate(event.event_date)}</span>
+                return (
+                  <div key={uniqueKey} className="event-card">
+                    <div className="event-header">
+                      <div className={`event-status ${getStatusClass(event.status)}`}>
+                        {event.status}
+                      </div>
+                      <div className="event-type">{event.type}</div>
                     </div>
-                    <div className="event-detail">
-                      <span className="detail-icon">📍</span>
-                      <span>{event.location}</span>
+
+                    <div className="event-content">
+                      <h3>{event.title}</h3>
+                      <div className="event-details">
+                        <div className="event-detail">
+                          <span className="detail-icon">📅</span>
+                          <span>{formatDate(event.event_date)}</span>
+                        </div>
+                        <div className="event-detail">
+                          <span className="detail-icon">📍</span>
+                          <span>{event.location}</span>
+                        </div>
+                      </div>
+                      {event.program && <p className="event-program">Part of: {event.program}</p>}
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => setSelectedEvent(event)}
+                      >
+                        Register Now
+                      </button>
                     </div>
                   </div>
-                  {event.program && (
-                    <p className="event-program">Part of: {event.program}</p>
-                  )}
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => handleRegisterClick(event.id, event.title)}
-                  >
-                    Register Now
-                  </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p style={{ textAlign: "center" }}>
-              No upcoming events available.
-            </p>
-          )}
-        </div>
+                );
+              })
+            ) : (
+              <p style={{ textAlign: "center" }}>No upcoming events available.</p>
+            )}
+          </div>
+
 
         <div className="events-cta">
           <h3>PhRMC</h3>
@@ -118,6 +116,16 @@ const Events = () => {
           </div>
         </div>
       </div>
+
+      {/* ✅ Modal opens when event is selected */}
+      {selectedEvent && (
+        <UserRegistrationForm
+          event={selectedEvent}
+          trainingId={selectedEvent.training_id}   // ✅ pass explicitly
+          onClose={() => setSelectedEvent(null)}
+        />
+
+      )}
     </section>
   );
 };

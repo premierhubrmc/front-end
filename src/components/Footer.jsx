@@ -40,7 +40,7 @@ const Footer = () => {
             <div className="footer-section">
               <h4>Contact Info</h4>
               <div className="contact-info">
-                <p>📧 info@premierhub.com</p>
+                <p>📧 info@premierhubrmc.com</p>
                 <p>📞 +254  722 655 902</p>
                 <p>📍 Nairobi, Kenya</p>
 

@@ -1,216 +1,150 @@
-.landscape-form-container {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 3rem;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.form-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.form-header h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.form-header p {
-  font-size: 1.1rem;
-  color: #64748b;
-  font-weight: 400;
-}
-
-.landscape-form {
+/* Overlay covers the entire screen */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto; /* allows scrolling on small screens */
+  padding: 1rem; /* reduce padding for smaller screens */
+  box-sizing: border-box;
+}
+
+/* Modal container */
+.landscape-form-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 3rem;
+  width: 90%;
+  max-width: 650px; /* slightly wider */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s ease;
+}
+.close-btn:hover {
+  color: #ff4d4f;
+}
+
+/* Form header */
+.form-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #111;
+  text-align: center;
+}
+.form-header p {
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+/* Form layout */
+.landscape-form {
+  margin-top: 1.5rem;
 }
 
 .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .form-group {
+  flex: 1 1 45%;
   display: flex;
   flex-direction: column;
 }
 
 .form-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.8rem;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #374151;
-}
-
-.label-icon {
-  width: 18px;
-  height: 18px;
-  color: #3b82f6;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 1rem 1.2rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: #ffffff;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 120px;
-  font-family: inherit;
-}
-
-.file-group {
-  position: relative;
-}
-
-.file-input-wrapper {
-  position: relative;
-}
-
-.file-input-wrapper input[type="file"] {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  width: 100%;
-  height: 100%;
-}
-
-.file-input-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1.2rem;
-  border: 2px dashed #d1d5db;
-  border-radius: 12px;
-  background: #f9fafb;
-  color: #6b7280;
+  margin-bottom: 0.5rem;
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
+  color: #333;
 }
 
-.file-input-label:hover {
-  border-color: #3b82f6;
-  background: #eff6ff;
-  color: #3b82f6;
+.form-group input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-group input:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+  outline: none;
 }
 
-.upload-icon {
-  width: 20px;
-  height: 20px;
+/* Readonly input style */
+.readonly-input {
+  background: #f5f5f5;
+  cursor: not-allowed;
 }
 
-.form-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
+/* Submit button */
 .submit-button {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.2rem 3rem;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  color: white;
-  font-size: 1.1rem;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
   font-weight: 600;
+  color: #fff;
+  background-color: #0070f3;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  transition: background-color 0.2s ease;
 }
-
 .submit-button:hover {
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  background-color: #005ac1;
 }
 
-.button-icon {
-  width: 20px;
-  height: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .landscape-form-container {
-    max-width: 95%;
-    padding: 2rem;
-    margin: 1rem auto;
+/* Modal fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  .form-header h2 {
-    font-size: 2rem;
+/* Responsive */
+@media (max-width: 700px) {
+  .landscape-form-container {
+    width: 95%;
+    padding: 1.5rem 1.8rem; /* slightly smaller on small screens */
   }
 
   .form-row {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    flex-direction: column;
   }
 
-  .submit-button {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .landscape-form-container {
-    padding: 1.5rem;
+  .form-group {
+    flex: 1 1 100%;
   }
 
   .form-header h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
-
-  .form-header p {
-    font-size: 1rem;
-  }
-
-  .landscape-form {
-    gap: 1.5rem;
-  }
-
-  .form-row {
-    gap: 1.2rem;
-  }
-}
-
-/* Animation for file upload success */
-.file-input-label.has-file {
-  border-color: #10b981;
-  background: #f0fdf4;
-  color: #059669;
 }

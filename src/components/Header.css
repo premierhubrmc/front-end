@@ -2,7 +2,8 @@
 .header {
     position: fixed;   
     top: 0;           
-    left: 0;           
+    left: 0; 
+            
     width: 100%;     
     z-index: 1000;     
     margin: 0;         
@@ -15,7 +16,7 @@
 .header .container {
   max-width: 100%;   
   margin: 0;      
- 
+
   display: grid;
   grid-template-columns: 1.2fr 3.8fr;
   align-items: stretch;
@@ -111,7 +112,7 @@
   font-weight: 500;
   cursor: pointer;
   padding: 0.75rem 1.25rem; /* slightly bigger padding */
-  border-radius: 6px;
+ 
   transition: all 0.3s ease;
 }
 
@@ -173,4 +174,71 @@
   justify-content: flex-end; 
   align-items: center;       }
 
+}
+
+/* ===== Dropdown Styles ===== */
+.nav-item {
+  position: relative;   /* key: makes dropdown absolute to this */
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;  /* sits just below the nav button */
+  left: -2.2rem;
+  background: #3366ff;/* watery bluish transparent */
+  color: #ffffff;
+  min-width: 180px;
+  padding: 1.5rem 0;
+  z-index: 2000;
+
+  /* glassy/watery effect */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+ 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.dropdown-menu li button {
+  display: block;
+  width: 100%;
+  background: none;
+  border-bottom: 0.12rem solid #7091f7;
+  text-align: left;
+  color: #ffff;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s;
+  
+}
+.dropdown-menu li{
+list-style: none;
+}
+.dropdown-menu li button:hover {
+  
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;   /* stacked inside mobile nav */
+    background: #3366ff;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .dropdown-menu li button {
+    color: #fff;
+    padding: 0.75rem 1rem;
+  }
+
+  .dropdown-menu li button:hover {
+    background: #ffff;
+  }
 }

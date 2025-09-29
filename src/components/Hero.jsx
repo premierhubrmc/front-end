@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Hero.css";
 import { Banknote, Cpu, Users, ShieldCheck, Briefcase } from "lucide-react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Icons remain unchanged
 const iconMap = {
   financial: Banknote,
@@ -22,7 +24,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch("http://localhost:8001/api/events");
+        const res = await fetch(`${API_URL}/api/events`);
         // ⬆️ replace with your actual backend URL e.g. https://api.premierhub.com/api/events
         if (!res.ok) throw new Error("Failed to fetch events");
 
@@ -54,9 +56,19 @@ const Hero = () => {
         </div>
 
         <p className="hero-desc">
-          Premier Hub for Risk Management & Compliance - PhRMC is driving and
-          coordinating the implementation of effective Risk Management in all
-          organizations.
+          Premier Hub for Risk Management & 
+        </p>
+        <p className="hero-desc">
+          Compliance - PhRMC is driving and          
+        </p>
+        <p className="hero-desc">
+          coordinating the implementation of 
+        </p>
+        <p className="hero-desc">
+          effective Risk Management in all             
+        </p>
+        <p className="hero-desc">
+           organizations.             
         </p>
       </div>
 
@@ -76,37 +88,39 @@ const Hero = () => {
           {loading && <p>Loading events...</p>}
           {error && <p style={{ color: "red" }}>{"No Upcoming Events yet"}</p>}
 
-          {!loading && !error && events.length > 0 && (
-            <ul className="upcoming-list">
-              {events.map((ev, index) => {
-                const Icon = iconMap[ev.icon_key]; // <-- use DB-provided icon_key
-                return (
-                  <li
-                    key={ev.id}
-                    className="upcoming-item"
-                    style={{
-                      backgroundColor: colors[index % colors.length],
-                    }}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => window.open(ev.pdf_url, "_blank")}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        window.open(ev.pdf_url, "_blank");
-                      }
-                    }}
-                  >
-                    <span>{ev.title}</span>
-                    {Icon && (
-                      <span className="icon-wrapper">
-                        <Icon className="w-5 h-5 text-black" />
-                      </span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          )}
+                      {!loading && !error && events.length > 0 && (
+                        <ul className="upcoming-list">
+                          {events.map((ev, index) => {
+                            const Icon = iconMap[ev.icon_key];
+                            // Use ev.id if available, else fallback to combination of index + title
+                            const uniqueKey = ev.id ? `event-${ev.id}` : `event-${index}-${ev.title}`;
+
+                            return (
+                              <li
+                                key={uniqueKey}
+                                className="upcoming-item"
+                                style={{ backgroundColor: colors[index % colors.length] }}
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => window.open(ev.pdf_url, "_blank")}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter" || e.key === " ") {
+                                    window.open(ev.pdf_url, "_blank");
+                                  }
+                                }}
+                              >
+                                <span>{ev.title}</span>
+                                {Icon && (
+                                  <span className="icon-wrapper">
+                                    <Icon className="w-5 h-5 text-black" />
+                                  </span>
+                                )}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+
 
           {!loading && !error && events.length === 0 && (
             <p style={{ textAlign: "center" }}>No featured events available.</p>

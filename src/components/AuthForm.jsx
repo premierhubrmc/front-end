@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"; // 👈 import router hook
 import "./forms.css"; // your existing styles
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,7 +26,7 @@ const handleSubmit = async (e) => {
   try {
     if (isSignUp) {
       // signup → default role ordinary_user
-      await axios.post("http://localhost:8001/api/signup", {
+      await axios.post(`${API_URL}/api/signup`, {
         ...formData,
         role: "ordinary_user",
       });
@@ -32,7 +34,7 @@ const handleSubmit = async (e) => {
       setIsSignUp(false);
     } else {
       // login
-      const res = await axios.post("http://localhost:8001/api/login", {
+      const res = await axios.post(`${API_URL}/api/login`, {
         email: formData.email,
         password: formData.password,
       });

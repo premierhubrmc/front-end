@@ -1,5 +1,6 @@
 import React from 'react'
 import "./About.css"
+import AboutFooter from './AboutFooter'
 
 const About = () => {
   return (
@@ -25,55 +26,55 @@ const About = () => {
       </div>
 
       {/* ✅ This section is now separate */}
-      <section className="about-content">
-        <div className="about-left">
-          <div className="about-description">
-            <p>
-            Premier hub for Risk Management & 
-            Compliance – PhRMC is driving and 
-            coordinating the implementation of 
-            effective enterprise risk management 
-            and corporate continuity 
-            management in all organisations by 
-            promoting…. 
-          </p>
-          <div className="about-list">
-            <ul>
-              <li> The <span>Culture</span> of holistic risk 
-              management learning
-              </li>
-              <li> The <span>Skills</span> mastery to optimize 
-              organisation risk management effort
-              </li>
-              <li>  The <span>Reach</span> to strengthen risk 
-              management training and services
-              </li>
-            </ul>
-          </div>
-          </div>
-        </div>
-<div className="about-right">
-  <div className="about-right-text">
-    <h1>Vision</h1>
-    <p>Taking Calculated Risk</p>        
+            <section className="about-content">
+              <div className="about-left">
+                <div className="about-description">
+                  <p>
+                  Premier hub for Risk Management & 
+                  Compliance – PhRMC is driving and 
+                  coordinating the implementation of 
+                  effective enterprise risk management 
+                  and corporate continuity 
+                  management in all organisations by 
+                  promoting…. 
+                </p>
+                <div className="about-list">
+                  <ul>
+                    <li> The <span>Culture</span> of holistic risk 
+                    management learning
+                    </li>
+                    <li> The <span>Skills</span> mastery to optimize 
+                    organisation risk management effort
+                    </li>
+                    <li>  The <span>Reach</span> to strengthen risk 
+                    management training and services
+                    </li>
+                  </ul>
+                </div>
+                </div>
+              </div>
+                      <div className="about-right">
+                        <div className="about-right-text">
+                          <h1>Vision</h1>
+                          <p>Taking Calculated Risk</p>        
 
-    <h1>Mission</h1>
-    <p>Effectively managing and benefiting from enterprise risks</p>
+                          <h1>Mission</h1>
+                          <p>Effectively managing and benefiting from enterprise risks</p>
 
-    <span className="line">
-      At Premier <span className="hub">HUB</span> 
-      <span> you will access world class training that equips and skills you to run:</span>
-    </span>
-  </div>
+                          <span className="line">
+                            At Premier <span className="hub">HUB</span> 
+                            <span> you will access world class training that equips and skills you to run:</span>
+                          </span>
+                        </div>
 
-  <div className="about-right-image">
-    <img src="/images/risk_diagram.png" alt="risk diagram" />
-  </div>
-</div>
+                        <div className="about-right-image">
+                          <img src="/images/risk_diagram.png" alt="risk diagram" />
+                        </div>
+                      </div>
 
 
-      </section>
-
+            </section>
+              <AboutFooter/>
       
     </section>  
   )

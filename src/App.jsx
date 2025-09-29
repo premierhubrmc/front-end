@@ -7,7 +7,7 @@ import Training from './components/Training';
 import Corporate from './components/Corporate';
 import Events from './components/Events';
 import Footer from './components/Footer';
-import AboutFooter from './components/AboutFooter';
+
 import AdminPage from './components/AdminPage'; // new admin dashboard
 
 function Home() {
@@ -15,8 +15,7 @@ function Home() {
     <>
       <Header />
       <Hero />
-      <About />
-      <AboutFooter />
+      <About />      
       <Training />
       <Corporate />
       <Events />     
