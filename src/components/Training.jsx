@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Training = () => {
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,7 +10,7 @@ const Training = () => {
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const res = await axios.get("http://localhost:8001/api/trainings");
+        const res = await axios.get(`${API_URL}/api/trainings`);
         setPrograms(res.data);
       } catch (err) {
         console.error("FETCH TRAININGS ERROR:", err);

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Upload, FileText, Image, Send } from "lucide-react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const TrainingForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -26,7 +28,7 @@ const TrainingForm = () => {
     try {
       setLoading(true);
         await axios.post(
-          "http://localhost:8001/api/trainings", 
+          `${API_URL}/api/trainings`, 
           formData,
           { headers: { "Content-Type": "multipart/form-data" } }
         );

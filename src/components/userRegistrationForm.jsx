@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./forms.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const UserRegistrationForm = ({ event, onClose }) => {
   const [formData, setFormData] = useState({
     user_name: "",
@@ -29,7 +31,7 @@ const UserRegistrationForm = ({ event, onClose }) => {
 
     try {
       const res = await fetch(
-        "http://localhost:8001/api/training/registration",
+        `${API_URL}/api/training/registration`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
