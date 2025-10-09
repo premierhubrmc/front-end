@@ -30,14 +30,14 @@ const About = () => {
               <div className="about-left">
                 <div className="about-description">
                   <p>
-                  Premier hub for Risk Management & 
-                  Compliance – PhRMC is driving and 
-                  coordinating the implementation of 
-                  effective enterprise risk management 
-                  and corporate continuity 
-                  management in all organisations by 
-                  promoting…. 
-                </p>
+                    Premier hub for Risk Management & 
+                    Compliance – PhRMC is driving and 
+                    coordinating the implementation of 
+                    effective enterprise risk management 
+                    and corporate continuity 
+                    management in all organisations by 
+                    promoting…. 
+                  </p>
                 <div className="about-list">
                   <ul>
                     <li> The <span>Culture</span> of holistic risk 

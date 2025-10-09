@@ -1,102 +1,17 @@
-/* ============================
-   About Section Styles
-=============================== */
-.about {
-  background: #f8fafc;
-  padding: 2rem 1rem;
-  font-family: 'Bahnschrift', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  color: #333;
-  line-height: 1.6;
-  box-sizing: border-box;
+
+.hero {
+    font-family: 'Bahnschrift', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.15;    
+    box-sizing: border-box;
+    margin: 0;
+    padding-top: 100px;
+    display: flex;
+    align-items: center;  
+   
+    /*min-height: calc(80vh - 100px); */
+    
 }
 
-/* ---------- Section Header ---------- */
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-header h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 1rem;
-}
-
-/* ---------- Logo + Title ---------- */
-.about-container {
-  display: grid;
-  grid-template-columns: 1.2fr 3.8fr; 
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.about-container h2 {
-  margin: 0;
-  background-color: #007bff;
-  color: #fff;
-  padding: 8px 16px;
-  text-align: left;
-  border-radius: 4px;
-  width: 100%;
-}
-
-/* ---------- Content Columns ---------- */
-.about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.about-left,
-.about-right {
-  padding: 1rem;
-  text-align: left;
-}
-
-/* Headings */
-.about-right h3 {
-  color: #007bff;
-  font-weight: 700;
-  margin: 1rem 0 0.5rem;
-  font-size: 1.5rem;
-}
-
-/* Paragraph spacing */
-.about-right p,
-.about-description p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-/* Custom list */
-.about-left ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
-}
-
-.about-left li {
-  position: relative;
-  padding-left: 2rem;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-}
-
-.about-left li::before {
-  content: "✔";
-  color: red;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.about-left li span {
-  color: red;
-  font-weight: 600;
-}
 
 /* Steps styling (from earlier) */
 .steps-list {
@@ -148,30 +63,16 @@
   font-style: italic;
 }
 
-.hero-content {
-  flex: 1;
-  max-width: 600px;
-  padding: 0;
-  margin: 0;
-}
+
 
 .hero-desc {
   padding-left: 1.5rem;
   font-size: 1.5rem;
 }
 
-.phone-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.phone-img img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  object-fit: contain;
-}
+
+
 
 .hero-events {
   display: grid;
@@ -202,7 +103,158 @@
   color: #334155;
 }
 
+
+.hero-subtitle {
+  padding-bottom: 4rem;
+}
+
+.hero-subtitle p {
+  font-family: 'Bahnschrift', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  color: rgb(223, 54, 33);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1;
+  text-align: left; /* ✅ this aligns it left */
+  padding-left: 1.5rem
+}
+
+
+
+
+.hero-events {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  align-items: center;   
+  margin: 0;  
+  padding: 0;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* 👇 Two-column layout for events */
+.hero-events {
+  flex: 1;
+  display: flex;
+  align-items: flex-start; /* keep top alignment */
+  gap: 0;
+  height: auto;            /* allow parent to grow with image */
+  overflow: visible;       /* ensure image isn't clipped */
+}
+
+.hero-image {
+  flex: 1;
+  
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.hero-list {
+  flex: 2;
+}
+
+.hero-list .section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;         /* 🚀 prevents shrinking */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff; /* white circle */
+  box-shadow: inset -4px 0px 8px rgba(0, 0, 0, 0.25);
+}
+
+.icon-wrapper svg {
+  width: 16px;
+  height: 16px;
+  color: #000; /* makes icons visible inside white */
+}
+
 .upcoming-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes icon to far right */
+  color: #fff;
+  font-family: "Bahnschrift", serif;
+  margin: 0;
+  padding: 0 0.5rem;
+  height: 60px;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+
+.upcoming-item:hover {
+  filter: brightness(90%);
+  transform: translateX(5px);
+}
+
+.upcoming-img {
+  position: relative; /* or absolute if you need overlay */
+  max-width: 300px;
+  height: 400px; 
+  object-fit: cover; /* makes it resize nicely */
+  
+}
+
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
+
+.hero-desc{
+  font-size: 1.5rem;
+}
+.featured{
+  width: 100%;
+}
+.upcoming-item {
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -223,13 +275,8 @@
   transform: translateX(5px);
 }
 
-.upcoming-img {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-height: 450px;
-  object-fit: cover;
-  border-radius: 8px;
+.phone-img{
+  padding-top: 50px;
 }
 
 .icon-wrapper {
@@ -250,31 +297,6 @@
   color: #000;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 992px) {
-  .about-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .about-container h2 {
-    text-align: center;
-    margin: 0 auto;
-    width: auto;
-  }
-
-  .about-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .about-right img {
-    max-width: 90%;
-    height: auto;
-    margin: 1rem auto;
-    display: block;
-  }
-}
 
 @media (max-width: 768px) {
   .hero-events {

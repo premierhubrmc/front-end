@@ -82,7 +82,7 @@ const Hero = () => {
           />
         </div>
 
-        <div className="hero-content">
+        <div className="featured">
           {!error && <p className="upcoming-p">"Upcoming Trainings"</p>}
 
           {loading && <p>Loading events...</p>}

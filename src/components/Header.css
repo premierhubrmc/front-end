@@ -89,8 +89,10 @@
 
 /* ===== Right Side (Nav + Toggle) ===== */
 .header-right {
+  padding-left: 33px;
+ 
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
   height: 100%;
@@ -100,8 +102,13 @@
 
 /* ===== Navigation ===== */
 .nav {
+  margin-left: 10px;
+  margin-right: 18%;
   display: flex;
-  gap: 1.5rem;
+  justify-content: space-between; 
+  align-items: center;
+  gap: 2rem; /* ✅ a bit wider spacing between menu items */
+  flex: 1; /* ✅ ensures nav takes available space evenly */
 }
 
 .nav button {
@@ -180,22 +187,26 @@
 .nav-item {
   position: relative;   /* key: makes dropdown absolute to this */
 }
+
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;  /* sits just below the nav button */
-  left: -2.2rem;
-  background: #3366ff;/* watery bluish transparent */
+  top: 100%; /* sit right below the button */
+  left: 50%; /* start from middle of parent */
+  transform: translateX(-50%); /* ✅ center horizontally */
+  background: #3366ff;
   color: #ffffff;
-  min-width: 180px;
-  padding: 1.5rem 0;
+  border: none;
+  min-width: 200px;
+  padding: 1.2rem 0;
   z-index: 2000;
+  text-align: center; /* ✅ center text inside dropdown */
 
-  /* glassy/watery effect */
+  /* visual styling */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
- 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  
 }
 
 

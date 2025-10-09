@@ -5,7 +5,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
-  // scroll helper: accepts section id and optional scroll options
+  // Smooth scroll helper
   const scrollToSection = (sectionId, options = { block: "start" }) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -15,27 +15,34 @@ const Header = () => {
     setActiveDropdown(null);
   };
 
+  // Menu structure
   const menuItems = {
     about: [
-      "Our Vision",
-      "Our Mission",
+      "About Us",      
       "Our Expertise",
       "Our Approach",
       "Why Choose Premier Hub",
     ],
     training: [
-      "Financial Leadership Excellence Workshop",
-      "AI & Data Analytics Summit",
-      "HR Management Masterclass",
-      "Risk Management & Compliance Conference",
-      "Retirement Planning Seminar",
+      "Financial Leadership & Governance Excellence",
+      "Artificial Intelligence, Predictive Analytics & Data Driven Decision Making",
+      "Human Resource, Administrative Management & Performance Management;",
+      "Strategic Enterprise Risk Management & Compliance;",
+      "Retirement Planning & Self Empowerment",
     ],
     corporate: ["Corporate Services", "Our Commitment"],
     events: ["Workshops", "Webinars", "Conferences"],
   };
 
-  // items that should scroll to top of about_footer
   const aboutFooterTopItems = ["Our Expertise", "Our Approach"];
+
+  // ✅ Proper labels for nav buttons
+  const displayNames = {
+    about: "About Us",
+    training: "Training Programs",
+    corporate: "Corporate Services",
+    events: "Events",
+  };
 
   return (
     <header className="header">
@@ -63,16 +70,18 @@ const Header = () => {
                 onMouseEnter={() => setActiveDropdown(key)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                {/* MAIN BUTTON: no scrolling anymore; toggles dropdown on click */}
+                {/* MAIN BUTTON */}
                 <button
                   type="button"
                   aria-expanded={activeDropdown === key}
-                  onClick={() => setActiveDropdown((prev) => (prev === key ? null : key))}
+                  onClick={() =>
+                    setActiveDropdown((prev) => (prev === key ? null : key))
+                  }
                 >
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                  {displayNames[key] || key.charAt(0).toUpperCase() + key.slice(1)}
                 </button>
 
-                {/* DROPDOWN ITEMS: these perform scrolling when clicked */}
+                {/* DROPDOWN MENU */}
                 {activeDropdown === key && (
                   <ul className="dropdown-menu">
                     {menuItems[key].map((item, idx) => (
@@ -80,24 +89,20 @@ const Header = () => {
                         <button
                           type="button"
                           onClick={() => {
-                            // About-specific rules
                             if (key === "about") {
                               if (item === "Why Choose Premier Hub") {
-                                // scroll to bottom of about_footer
                                 scrollToSection("about_footer", { block: "end" });
                                 return;
                               }
                               if (aboutFooterTopItems.includes(item)) {
-                                // scroll to top of about_footer
                                 scrollToSection("about_footer");
                                 return;
                               }
-                              // default about items -> scroll to about
                               scrollToSection("about");
                               return;
                             }
 
-                            // Other menus: dropdown item scrolls to parent section
+                            // Other menus scroll to their respective sections
                             scrollToSection(key);
                           }}
                         >
