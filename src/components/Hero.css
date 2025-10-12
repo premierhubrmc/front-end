@@ -62,7 +62,18 @@
   padding: 2rem 0;
   font-style: italic;
 }
-
+.featured button {
+  background-color: #007bff; /* your preferred color */
+  color: #fff;
+  font-family: "Bahnschrift", sans-serif;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.6rem 1.5rem;
+  margin-top: 1rem;
+  margin-left: 110px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
 
 .hero-desc {
