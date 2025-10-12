@@ -221,7 +221,7 @@
   min-width: 400PX;
   margin: 0;
   padding: 0 0.5rem;
-  height: 60px;
+  min-height: 60px;
   border-top-right-radius: 9999px;
   border-bottom-right-radius: 9999px;
 
@@ -239,7 +239,7 @@
 .upcoming-img {
   position: relative; /* or absolute if you need overlay */
   max-width: 250px;
-  height: 500px; 
+  height: 370px; 
   object-fit: cover; /* makes it resize nicely */
   
 }
