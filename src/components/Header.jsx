@@ -26,8 +26,8 @@ const Header = () => {
     training: [
       "Financial Leadership & Governance Excellence",
       "Artificial Intelligence, Predictive Analytics & Data Driven Decision Making",
-      "Human Resource, Administrative Management & Performance Management;",
-      "Strategic Enterprise Risk Management & Compliance;",
+      "Human Resource, Administrative Management & Performance Management",
+      "Strategic Enterprise Risk Management & Compliance",
       "Retirement Planning & Self Empowerment",
     ],
     corporate: ["Corporate Services", "Our Commitment"],
