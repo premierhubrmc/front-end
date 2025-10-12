@@ -226,8 +226,8 @@
 
 .upcoming-img {
   position: relative; /* or absolute if you need overlay */
-  max-width: 300px;
-  height: 400px; 
+  max-width: 250px;
+  height: 500px; 
   object-fit: cover; /* makes it resize nicely */
   
 }
