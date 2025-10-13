@@ -60,11 +60,7 @@ const About = () => {
 
                           <h1>Mission</h1>
                           <p>Effectively managing and benefiting from enterprise risks</p>
-
-                          <span className="line">
-                            At Premier <span className="hub">HUB</span> 
-                            <span> you will access world class training that equips and skills you to run:</span>
-                          </span>
+                          
                         </div>
 
                         <div className="about-right-image">
