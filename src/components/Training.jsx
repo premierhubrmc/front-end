@@ -51,7 +51,10 @@ const Training = () => {
         </div>
       </div>
       </div>
-
+      <div className="training-intro">
+        <p>At Premier <span>Hub</span> you will access world class training that equips and skills you to run:</p>
+        <img src="/images/training_intro.png" alt="training itro" />
+      </div>
       <div className="pdf-display-grid">
         {pdfs.length === 0 ? (
           <p className="text-center">No training materials available yet.</p>
@@ -79,6 +82,30 @@ const Training = () => {
           })
         )}
       </div>
+<main className="training-details">
+  <div className="training-fees">
+    <h1>Training Fees</h1>
+    <p>5-day training @ Ksh 130,000 or US$ 1,000 per person</p>
+    <p>10-day training @ Ksh 260,000 or US$ 2,000 per person</p>
+  </div>
+
+  <div className="customized-solutions">
+    <h1>Customized Solutions</h1>
+    <p>
+      We focus on equipping clients with the skills, knowledge and behaviours
+      needed for optimum performance. We assemble our training and consultancy
+      solutions completely around client desired outcomes. We also design
+      customized in-house courses and training.
+    </p>
+    <p>
+      All our learning is designed to be fun and engaging — watch videos and
+      animations. The trainings include quizzes and ‘reflection points’ to help
+      your teams review their learning and complete interactive activities.
+    </p>
+  </div>
+</main>
+
+      
     </div>
   </section>
 );
