@@ -18,7 +18,7 @@ function Home() {
       <About />      
       <Training />
       <Corporate />
-      <Events />     
+     { /*<Events />*/  }   
       <Footer />
     </>
   );

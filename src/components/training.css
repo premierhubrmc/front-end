@@ -1,0 +1,20 @@
+.training {
+  background-color: #fff;
+}
+
+.pdf-container {
+  background-color: #fff !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pdf-container iframe {
+  background-color: #fff !important;
+}
+
+
+@media (max-width: 768px) {
+  .pdf-container iframe {
+    height: 600px;
+  }
+}

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./training.css"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Training = () => {
-  const [programs, setPrograms] = useState([]);
+  const [pdfs, setPdfs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPrograms = async () => {
+    const fetchPdfs = async () => {
       try {
         const res = await axios.get(`${API_URL}/api/trainings`);
-        setPrograms(res.data);
+        setPdfs(res.data);
       } catch (err) {
         console.error("FETCH TRAININGS ERROR:", err);
       } finally {
@@ -19,64 +20,69 @@ const Training = () => {
       }
     };
 
-    fetchPrograms();
+    fetchPdfs();
   }, []);
 
-  const handleClick = (e, pdfUrl) => {
-    e.preventDefault();
-    if (pdfUrl) {
-      window.open(pdfUrl, "_blank"); // open PDF in new tab
-    } else {
-      alert("PDF not available for this program.");
-    }
-  };
-
   if (loading) {
-    return <p className="text-center">Loading trainings...</p>;
+    return <p className="text-center">Loading training materials...</p>;
   }
 
   return (
-    <section id="training" className="training">
-      <div className="container">
-        <div className="section-header">
-          <h2>Training Programs</h2>
-          <p>
-            At Premier Hub you will access world class training that equips and
-            skills you to run:
-          </p>
-        </div>
-
-        <div className="programs-grid">
-          {programs.length === 0 ? (
-            <p className="text-center">No training programs available yet.</p>
-          ) : (
-            programs.map((program) => (
-              <div key={program.id} className="program-card">
-                <div className="program-image">
-                  <img
-                    src={program.image_url}
-                    alt={program.title}
-                    onError={(e) => (e.target.src = "/images/placeholder.jpg")} // fallback
-                  />
-                </div>
-                <div className="program-content">
-                  <h3>{program.title}</h3>
-                  <p>{program.description}</p>
-
-                  <button
-                    className="btn btn-outline"
-                    onClick={(e) => handleClick(e, program.pdf_url)}
-                  >
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            ))
-          )}
+  <section id="training" className="training" style={{ backgroundColor: "#fff" }}>
+    <div className="container">
+      <div className="section-header text-center mb-4">
+             {/* Header part */}
+      <div className="section-header">
+        <div className="about-container">
+          <div className="logo">
+            <img src="./logo.svg" alt="PhRMC Logo" />
+            <div className="brand-title">
+              <span className="line">
+                Premier <span className="hub">HUB</span>{" "}
+                <span className='logo_small_text'>for</span>
+              </span>
+              <span className="line">Risk Management &</span>
+              <span className="line">Compliance</span>
+            </div>
+          </div> 
+          <div>
+            <h2 style={{ color: "#fff" }}>Training Programs</h2>
+          </div>           
         </div>
       </div>
-    </section>
-  );
+      </div>
+
+      <div className="pdf-display-grid">
+        {pdfs.length === 0 ? (
+          <p className="text-center">No training materials available yet.</p>
+        ) : (
+          pdfs.map((item) => {
+            const pdfUrl = item.pdf_url?.startsWith("http")
+              ? item.pdf_url
+              : `https://files.premierhubrmc.com/${item.pdf_url}`;
+
+            return (
+              <div key={item.id} id={`pdf-${item.id}`}>
+                <embed
+                  src={
+                    item.pdf_url?.startsWith("http")
+                      ? item.pdf_url
+                      : `https://files.premierhubrmc.com/${item.pdf_url}`
+                  }
+                  type="application/pdf"
+                  width="100%"
+                  height="1400px"
+                />
+              </div>
+
+            );
+          })
+        )}
+      </div>
+    </div>
+  </section>
+);
+
 };
 
 export default Training;

@@ -5,30 +5,39 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
-  // Smooth scroll helper
+  // ✅ Smooth scroll helper
   const scrollToSection = (sectionId, options = { block: "start" }) => {
-    const element = document.getElementById(sectionId);
+    let element = document.getElementById(sectionId);
+
+    // ✅ Handle specific PDFs (like pdf-1760255743017)
+    if (!element && sectionId.startsWith("pdf-")) {
+      element = document.getElementById(sectionId);
+    }
+
     if (element) {
       element.scrollIntoView({ behavior: "smooth", ...options });
+    } else {
+      console.warn("No section found for:", sectionId);
     }
+
     setIsMenuOpen(false);
     setActiveDropdown(null);
   };
 
-  // Menu structure
+  // ✅ Menu structure
   const menuItems = {
     about: [
-      "About Us",      
+      "About Us",
       "Our Expertise",
       "Our Approach",
       "Why Choose Premier Hub",
     ],
     training: [
-      "Financial Leadership & Governance Excellence",
-      "Artificial Intelligence, Predictive Analytics & Data Driven Decision Making",
-      "Human Resource, Administrative Management & Performance Management",
-      "Strategic Enterprise Risk Management & Compliance",
-      "Retirement Planning & Self Empowerment",
+      { label: "Financial Leadership & Governance Excellence", id: "pdf-1760255743017" },
+      { label: "Artificial Intelligence, Predictive Analytics & Data Driven Decision Making", id: "pdf-1760255743018" },
+      { label: "Human Resource, Administrative Management & Performance Management", id: "pdf-1760255743019" },
+      { label: "Strategic Enterprise Risk Management & Compliance", id: "pdf-1760255743020" },
+      { label: "Retirement Planning & Self Empowerment", id: "pdf-1760255743021" },
     ],
     corporate: ["Corporate Services", "Our Commitment"],
     events: ["Workshops", "Webinars", "Conferences"],
@@ -36,7 +45,7 @@ const Header = () => {
 
   const aboutFooterTopItems = ["Our Expertise", "Our Approach"];
 
-  // ✅ Proper labels for nav buttons
+  // ✅ Display names for main buttons
   const displayNames = {
     about: "About Us",
     training: "Training Programs",
@@ -47,7 +56,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        {/* Logo */}
+        {/* ✅ Logo */}
         <div className="logo">
           <img src="/logo.svg" alt="PhRMC Logo" />
           <div className="brand-title">
@@ -60,7 +69,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Navigation */}
+        {/* ✅ Navigation */}
         <div className="header-right">
           <nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
             {Object.keys(menuItems).map((key) => (
@@ -78,45 +87,55 @@ const Header = () => {
                     setActiveDropdown((prev) => (prev === key ? null : key))
                   }
                 >
-                  {displayNames[key] || key.charAt(0).toUpperCase() + key.slice(1)}
+                  {displayNames[key] ||
+                    key.charAt(0).toUpperCase() + key.slice(1)}
                 </button>
 
                 {/* DROPDOWN MENU */}
                 {activeDropdown === key && (
                   <ul className="dropdown-menu">
-                    {menuItems[key].map((item, idx) => (
-                      <li key={idx}>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (key === "about") {
-                              if (item === "Why Choose Premier Hub") {
-                                scrollToSection("about_footer", { block: "end" });
-                                return;
-                              }
-                              if (aboutFooterTopItems.includes(item)) {
-                                scrollToSection("about_footer");
-                                return;
-                              }
-                              scrollToSection("about");
-                              return;
-                            }
+                    {menuItems[key].map((item, idx) => {
+                      // Handle both string items (like 'About Us') and object items (with label + id)
+                      const label = typeof item === "string" ? item : item.label;
+                      const sectionId =
+                        typeof item === "string" ? key : item.id;
 
-                            // Other menus scroll to their respective sections
-                            scrollToSection(key);
-                          }}
-                        >
-                          {item}
-                        </button>
-                      </li>
-                    ))}
+                      return (
+                        <li key={idx}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (key === "about") {
+                                if (item === "Why Choose Premier Hub") {
+                                  scrollToSection("about_footer", {
+                                    block: "end",
+                                  });
+                                  return;
+                                }
+                                if (aboutFooterTopItems.includes(item)) {
+                                  scrollToSection("about_footer");
+                                  return;
+                                }
+                                scrollToSection("about");
+                                return;
+                              }
+
+                              // ✅ Scroll to PDF sections for training
+                              scrollToSection(sectionId);
+                            }}
+                          >
+                            {label}
+                          </button>
+                        </li>
+                      );
+                    })}
                   </ul>
                 )}
               </div>
             ))}
           </nav>
 
-          {/* Mobile toggle */}
+          {/* ✅ Mobile toggle */}
           <button
             className="menu-toggle"
             onClick={() => setIsMenuOpen((s) => !s)}
